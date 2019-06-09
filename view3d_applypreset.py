@@ -27,9 +27,11 @@ class ApplyPreset(bpy.types.Operator):
                 setattr(space, param, getattr(self.preset, param))
             
             if hasattr(space.shading, param):
-                setattr(space.shading, param, getattr(self.preset, param))
-
-        print(self.preset.name)
+                try:
+                    setattr(space.shading, param, getattr(self.preset, param))
+                except:
+                    pass # not available in current mode - ignore
+                
         return {'FINISHED'}
 
 def register():
