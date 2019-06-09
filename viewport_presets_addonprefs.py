@@ -68,6 +68,11 @@ class ViewportPreset(bpy.types.PropertyGroup):
     show_specular_highlight: bpy.props.BoolProperty(default=True)
     use_scene_lights:bpy.props.BoolProperty(default=True)
     use_scene_world: bpy.props.BoolProperty(default=True)
+    studio_light: bpy.props.StringProperty()
+    studiolight_rotate_z: bpy.props.FloatProperty()
+    studiolight_background_alpha: bpy.props.FloatProperty()
+    use_world_space_lighting: bpy.props.BoolProperty(default=True)
+    single_color: bpy.props.FloatVectorProperty(subtype='COLOR', default=[0.0,0.0,0.0])
 
 
 class ViewportPresetsAddonPreferences(AddonPreferences):
