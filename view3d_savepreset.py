@@ -15,6 +15,8 @@ class SavePreset(bpy.types.Operator):
         preset.name = "New preset"
         params = preset.__annotations__.keys()
 
+        prefs.selected_index = len(prefs.presets) -1
+
         for param in params:
             if hasattr(space.overlay, param):
                 setattr(preset, param, getattr(space.overlay, param))

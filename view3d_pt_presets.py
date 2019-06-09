@@ -38,6 +38,9 @@ class ViewportPresets(bpy.types.Panel):
 
         row.prop(prefs.presets[prefs.selected_index], "name")
 
+        row=layout.row()
+        row.operator("wm.save_userpref")
+
 
 def view3d_presets_draw(self, context):
     layout = self.layout
