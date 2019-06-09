@@ -1,9 +1,9 @@
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 bl_info = {
     "name": "Viewport Presets",
     "author": "Andrew Charlton",
-    "version": (1, 0, 1),
+    "version": (1, 0, 2),
     "blender": (2, 80, 0),
     "location": "3D Viewport Header",
     "description": "Adds a preset popup to allow easy saving and recall of viewport shading, overlays and gizmos",
