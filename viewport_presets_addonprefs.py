@@ -21,8 +21,6 @@ class ViewportPreset(bpy.types.PropertyGroup):
     show_gizmo_camera_lens : bpy.props.BoolProperty(default=True)
     show_gizmo_camera_dof_distance : bpy.props.BoolProperty(default=True)
 
-
-
     show_overlays: bpy.props.BoolProperty(default=True)
     show_ortho_grid: bpy.props.BoolProperty(default=True)
     show_floor: bpy.props.BoolProperty(default=True)
@@ -46,10 +44,34 @@ class ViewportPreset(bpy.types.PropertyGroup):
     show_face_orientation: bpy.props.BoolProperty(default=True)
     show_reconstruction: bpy.props.BoolProperty(default=True)
 
+    light: bpy.props.StringProperty()
+    color_type: bpy.props.StringProperty()
+    background_type: bpy.props.StringProperty()
+    background_color: bpy.props.FloatVectorProperty(subtype='COLOR', default=[0.0,0.0,0.0])
+    show_backface_culling: bpy.props.BoolProperty(default=True)
+    show_xray: bpy.props.BoolProperty(default=True)
+    xray_alpha: bpy.props.FloatProperty()
+    show_shadows: bpy.props.BoolProperty(default=True)
+    shadow_intensity: bpy.props.FloatProperty()
+    show_cavity: bpy.props.BoolProperty(default=True)
+    cavity_type: bpy.props.StringProperty()
+    curvature_ridge_factor: bpy.props.FloatProperty()
+    curvature_valley_factor:bpy.props.FloatProperty()
+    cavity_ridge_factor: bpy.props.FloatProperty()
+    cavity_valley_factor:bpy.props.FloatProperty()
+    use_dof:bpy.props.BoolProperty(default=True)
+    show_object_outline:bpy.props.BoolProperty(default=True)
+    object_outline_color : bpy.props.FloatVectorProperty(subtype='COLOR', default=[0.0,0.0,0.0])
+    show_specular_highlight: bpy.props.BoolProperty(default=True)
+    use_scene_lights:bpy.props.BoolProperty(default=True)
+    use_scene_world: bpy.props.BoolProperty(default=True)
+
+
 class ViewportPresetsAddonPreferences(AddonPreferences):
     bl_idname = __package__
 
     presets: CollectionProperty(type=ViewportPreset)
+    selected_index: bpy.props.IntProperty()
 
     def draw(self, context):
         layout = self.layout

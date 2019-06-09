@@ -19,16 +19,24 @@ class ViewportPresets(bpy.types.Panel):
 
         row = layout.row()
         col = row.column()
+
+        i = 0
        
         for preset in prefs.presets:
             op = col.operator('view3d.applypreset', text=preset.name )
-
+            op.index = i
             params = op.preset.__annotations__.keys()
 
             for param in params:
                 setattr(op.preset, param, getattr(preset, param))
 
+            i = i + 1
+
         row.operator("view3d.savepreset", text="", icon='ADD', emboss=False)
+
+        row=layout.row()
+
+        row.prop(prefs.presets[prefs.selected_index], "name")
 
 
 def view3d_presets_draw(self, context):

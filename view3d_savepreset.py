@@ -20,8 +20,10 @@ class SavePreset(bpy.types.Operator):
                 setattr(preset, param, getattr(space.overlay, param))
 
             if hasattr(space, param):
-                print("saving " + param)
                 setattr(preset, param, getattr(space, param))
+
+            if hasattr(space.shading, param):
+                setattr(preset, param, getattr(space.shading, param))
 
         return {'FINISHED'}
 
