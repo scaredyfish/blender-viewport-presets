@@ -1,0 +1,31 @@
+import bpy
+from . import viewport_presets_addonprefs
+
+
+class ApplyPreset(bpy.types.Operator):
+    bl_idname = "view3d.applypreset"
+    bl_label = "Apply preset"
+
+    preset: bpy.props.PointerProperty(type=viewport_presets_addonprefs.ViewportPreset)
+
+    def execute(self, context):
+
+        space = context.area.spaces[0]
+
+        params = self.preset.__annotations__.keys()
+
+        for param in params:
+            if hasattr(space.overlay, param):
+                setattr(space.overlay, param, getattr(self.preset, param))
+
+            if hasattr(space, param):
+                setattr(space, param, getattr(self.preset, param))
+
+        print(self.preset.name)
+        return {'FINISHED'}
+
+def register():
+    bpy.utils.register_class(ApplyPreset)
+
+def unregister():
+    bpy.utils.unregister_class(ApplyPreset)
