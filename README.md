@@ -12,4 +12,4 @@ Change the name of the currently selected preset using the text box.
 
 Update or delete the current preset.
 
-Presets are saved is user preferences, so be sure to press the 'Save Preferences' button. 
+Presets are saved in user preferences, so be sure to press the 'Save Preferences' button. 
