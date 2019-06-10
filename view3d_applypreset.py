@@ -20,18 +20,21 @@ class ApplyPreset(bpy.types.Operator):
         prefs.selected_index = self.index
 
         for param in params:
-            if hasattr(space.overlay, param):
-                setattr(space.overlay, param, getattr(self.preset, param))
+            if param == 'shading_type':
+                space.shading.type = self.preset.shading_type
 
-            if hasattr(space, param):
-                setattr(space, param, getattr(self.preset, param))
-            
-            if hasattr(space.shading, param):
+            elif hasattr(space.shading, param):
                 try:
                     setattr(space.shading, param, getattr(self.preset, param))
                 except:
                     pass # not available in current mode - ignore
-                
+
+            elif hasattr(space.overlay, param):
+                setattr(space.overlay, param, getattr(self.preset, param))
+
+            elif hasattr(space, param):
+                setattr(space, param, getattr(self.preset, param))
+                 
         return {'FINISHED'}
 
 def register():

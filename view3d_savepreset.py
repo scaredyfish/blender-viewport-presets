@@ -26,14 +26,18 @@ class SavePreset(bpy.types.Operator):
         prefs.selected_index = len(prefs.presets) -1
 
         for param in params:
-            if hasattr(space.overlay, param):
+            if param == "shading_type":
+                preset.shading_type = space.shading.type 
+
+            elif hasattr(space.shading, param):
+                setattr(preset, param, getattr(space.shading, param))
+
+            elif hasattr(space.overlay, param):
                 setattr(preset, param, getattr(space.overlay, param))
 
-            if hasattr(space, param):
+            elif hasattr(space, param):
                 setattr(preset, param, getattr(space, param))
 
-            if hasattr(space.shading, param):
-                setattr(preset, param, getattr(space.shading, param))
 
         return {'FINISHED'}
 

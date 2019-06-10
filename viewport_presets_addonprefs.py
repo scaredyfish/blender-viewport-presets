@@ -44,6 +44,7 @@ class ViewportPreset(bpy.types.PropertyGroup):
     show_face_orientation: bpy.props.BoolProperty(default=True)
     show_reconstruction: bpy.props.BoolProperty(default=True)
 
+    shading_type: bpy.props.StringProperty(default='SOLID')
     light: bpy.props.StringProperty()
     color_type: bpy.props.StringProperty()
     wireframe_color_type: bpy.props.StringProperty()
