@@ -79,7 +79,7 @@ class ViewportPresetsAddonPreferences(AddonPreferences):
     bl_idname = __package__
 
     presets: CollectionProperty(type=ViewportPreset)
-    selected_index: bpy.props.IntProperty()
+    selected_index: bpy.props.IntProperty(default=-1)
 
     def draw(self, context):
         layout = self.layout
@@ -91,7 +91,7 @@ def register():
     bpy.utils.register_class(ViewportPresetsAddonPreferences)
 
     prefs = bpy.context.preferences.addons[__package__].preferences
-
+    prefs.selected_index = -1
     # one = prefs.presets.add()
     # one.name = "First"
     # one.show_gizmo = True

@@ -18,12 +18,12 @@ class ViewportPresets(bpy.types.Panel):
         layout.label(text="Presets")
 
         row = layout.row()
-        col = row.column()
+        col = row.column(align=True)
 
         i = 0
        
         for preset in prefs.presets:
-            op = col.operator('view3d.applypreset', text=preset.name )
+            op = col.operator('view3d.applypreset', text=preset.name, depress = (prefs.selected_index == i)  )
             op.index = i
             params = op.preset.__annotations__.keys()
 
@@ -34,9 +34,11 @@ class ViewportPresets(bpy.types.Panel):
 
         row.operator("view3d.savepreset", text="", icon='ADD', emboss=False)
 
-        row=layout.row()
-
-        row.prop(prefs.presets[prefs.selected_index], "name")
+        if (prefs.selected_index >= 0):
+            layout.prop(prefs.presets[prefs.selected_index], "name", text="Rename")
+            row = layout.row()
+            row.operator('view3d.savepreset', text='Update').index = prefs.selected_index
+            row.operator('view3d.deletepreset', text='Delete').index = prefs.selected_index
 
         row=layout.row()
         row.operator("wm.save_userpref")

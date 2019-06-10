@@ -21,11 +21,13 @@ if 'bpy' in locals():
         importlib.reload(viewport_presets_addonprefs)
         importlib.reload(view3d_applypreset)
         importlib.reload(view3d_savepreset)
+        importlib.reload(view3d_deletepreset)
 else:
     from . import view3d_pt_presets
     from . import viewport_presets_addonprefs
     from . import view3d_applypreset
     from . import view3d_savepreset
+    from . import view3d_deletepreset 
 
 import bpy
 
@@ -34,12 +36,14 @@ def register():
     viewport_presets_addonprefs.register()
     view3d_applypreset.register()
     view3d_savepreset.register()
+    view3d_deletepreset.register()
   
 def unregister():
     view3d_pt_presets.unregister()
     viewport_presets_addonprefs.unregister()
     view3d_applypreset.unregister()
     view3d_savepreset.unregister()
+    view3d_deletepreset.unregister()
 
 if __name__ == "__main__":
     register()

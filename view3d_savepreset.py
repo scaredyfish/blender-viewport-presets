@@ -2,17 +2,25 @@ import bpy
 from . import viewport_presets_addonprefs
 
 
+
 class SavePreset(bpy.types.Operator):
     bl_idname = "view3d.savepreset"
     bl_label = "Save preset"
+
+    index: bpy.props.IntProperty(default=-1)
 
     def execute(self, context):
         prefs = bpy.context.preferences.addons[__package__].preferences
 
         space = context.area.spaces[0]
 
-        preset = prefs.presets.add()
-        preset.name = "New preset"
+        if (self.index >= 0):
+            preset = prefs.presets[self.index]
+        else:
+            preset = prefs.presets.add()
+            preset.name = "New preset"
+        
+       
         params = preset.__annotations__.keys()
 
         prefs.selected_index = len(prefs.presets) -1
